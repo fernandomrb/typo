@@ -2,5 +2,12 @@
 <%= form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data", :class => className) do %>
 
   <%= render :partial => "form" %>
-
+<% end %>
+<% if action_name == "edit" %>
+  <h4>Merge Article</h4>
+  <%= form_tag :controller => :content, :action => :merge do %>
+    <input type="hidden" name="merge[from]" value="<%= @article.id %>" />
+    <%= text_field :merge, 'with' %>
+    <%= save(_("Merge")) %>
+  <% end %>
 <% end %>

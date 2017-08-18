@@ -1,0 +1,19 @@
+Feature: Merge similar articles
+  As an admin
+  In order to avoid duplicate content
+  I want to merge similar articles
+
+Background:
+  Given the blog is set up
+  And I am logged into the admin panel
+  Given the following articles exists
+  | title               | body                                                                                  | author    | published |
+  | Heisemberg ipsum    | Sumus tam adultis. Non est enim tibi nescio fingunt.                                  | admin     | true      |
+  | Lorem ipsum         | Scio te debeo meae. At etiam, ut caveant ab his eu. In tuo positum, idem fecissem.    | admin     | true      |
+
+Scenario: I should be able to merge articles
+  Given I am on the all articles page
+  Then I follow "Lorem ipsum"
+  Then I fill in "merge_with" with "3"
+  When I press "Merge"
+  Then I should see "Articles was successfully merged."
